@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bird : MonoBehaviour
 {
@@ -8,6 +7,14 @@ public class Bird : MonoBehaviour
 
     private void Awake() {
         initialPosition = transform.position;
+    }
+
+    private void Update() {
+        if (transform.position.y > 10)
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+        }
     }
 
     private void OnMouseDown(){
