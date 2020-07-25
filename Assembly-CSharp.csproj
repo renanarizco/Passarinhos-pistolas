@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Code\Bird.cs" />
      <Compile Include="Assets\Code\Enemy.cs" />
+     <Compile Include="Assets\Code\LevelController.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -575,6 +576,9 @@
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>A:/Github/passarinhos-pistolas/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+        <HintPath>A:/Github/passarinhos-pistolas/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
         <HintPath>A:/Github/passarinhos-pistolas/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
@@ -635,6 +639,9 @@
     <Reference Include="Unity.2D.Animation.Editor">
         <HintPath>A:/Github/passarinhos-pistolas/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+        <HintPath>A:/Github/passarinhos-pistolas/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
         <HintPath>A:/Github/passarinhos-pistolas/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
@@ -652,12 +659,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>A:/Github/passarinhos-pistolas/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-        <HintPath>A:/Github/passarinhos-pistolas/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-        <HintPath>A:/Github/passarinhos-pistolas/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

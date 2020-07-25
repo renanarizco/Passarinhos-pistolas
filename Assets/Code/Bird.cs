@@ -3,18 +3,31 @@ using UnityEngine.SceneManagement;
 
 public class Bird : MonoBehaviour
 {
+
+    /*      VARIÁVEIS    */
+    //Variável _initialPosition que guarda a informação da posição inicial definida no editor de level do Unity.
     private Vector3 _initialPosition;
+
+    //Variável _birdWasLaunched que vira true quando o pássaro é lançado.
     private bool _birdWasLaunched;
+
+    //Variável _timeSittingAround que faz com que quando o pássaro fique parado aumente.
     private float _timeSittingAround;
 
-    [SerializeField] private float _launchPower = 250;
+    //Variável _launchPower que faz com que a potência do vôo do pássaro aumente.
+    [SerializeField] private float _launchPower = 50;
 
 
+
+    /*      MÉTODOS    */
+    //Faz com que ao iniciar o jogo a variável _initialPosition receba a posição definida pelo editor de level do unity.
     private void Awake()
     {
         _initialPosition = transform.position;
     }
 
+    //Se o pássaro foi lançado e a velocidade dele for menor que 0.1, faz com que a variável _timeSittingAround aumente.
+    //Se o Update detectar que o pássaro saiu dos limites do mapa ou o tempo parado foi maior que o tanto definido ali, a cena reseta.
     private void Update()
     {
         GetComponent<LineRenderer>().SetPosition(0, transform.position);
@@ -26,9 +39,9 @@ public class Bird : MonoBehaviour
         }
 
         if (
-            transform.position.y > 10 || transform.position.y < -9 ||
-            transform.position.x > 24 || transform.position.x < -10 ||
-            _timeSittingAround > 3
+            transform.position.y > 20 || transform.position.y < -15 ||
+            transform.position.x > 30 || transform.position.x < -30 ||
+            _timeSittingAround > 2
             )
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
@@ -37,6 +50,7 @@ public class Bird : MonoBehaviour
         
     }
 
+    //Ao apertar o mouse  no pássaro, ele fica com a cor vermelha e aparece setas mostrando a direção que ele irá ser lançado.
     private void OnMouseDown()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
@@ -44,6 +58,9 @@ public class Bird : MonoBehaviour
         
     }
     
+    //Ao soltar o mouse faz com que o pássaro volte a ser branco, depois a variável directionToInitialPosition recebe a posição inicial do pássaro - a posição nova.
+    //Depois, o .AddForce do RigidBody recebe a direção que o pássaro vai voar * o poder de lançamento definido anteriormente.
+    //A variável _birdWasLaunched ativa dizendo que o pássaro foi lançado com sucesso e as setas são desativadas.
     private void OnMouseUp()
     {
         GetComponent<SpriteRenderer>().color = Color.white;
@@ -54,6 +71,7 @@ public class Bird : MonoBehaviour
         GetComponent<LineRenderer>().enabled = false;
     }
 
+    //Ao segurar o mouse faz com que o pássaro siga o cursor, transformando seu x e y no do cursor.
     private void OnMouseDrag() {
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(newPosition.x, newPosition.y);
