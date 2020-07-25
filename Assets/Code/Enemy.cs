@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
 
         if (enemy != null)
         {
+            Instantiate(_CloudParticlePrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
             return;
         }
         

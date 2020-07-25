@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a803fc2a7141c478b6443c0b71a908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxLevel: 2
 --- !u!4 &141633720
 Transform:
   m_ObjectHideFlags: 0
@@ -181,7 +182,7 @@ GameObject:
   - component: {fileID: 209840966}
   - component: {fileID: 209840965}
   m_Layer: 0
-  m_Name: Blue Monster (1)
+  m_Name: Blue Monster (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -376,7 +377,7 @@ GameObject:
   - component: {fileID: 240427269}
   - component: {fileID: 240427268}
   m_Layer: 0
-  m_Name: Caixa
+  m_Name: Caixa (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -736,7 +737,7 @@ GameObject:
   - component: {fileID: 895012933}
   - component: {fileID: 895012938}
   m_Layer: 0
-  m_Name: Blue Monster
+  m_Name: Blue Monster (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1551,7 +1552,7 @@ GameObject:
   - component: {fileID: 2062033350}
   - component: {fileID: 2062033349}
   m_Layer: 0
-  m_Name: Caixa (1)
+  m_Name: Caixa (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

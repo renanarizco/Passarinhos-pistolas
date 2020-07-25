@@ -39,6 +39,7 @@
      <Compile Include="Assets\Code\Bird.cs" />
      <Compile Include="Assets\Code\Enemy.cs" />
      <Compile Include="Assets\Code\LevelController.cs" />
+     <Compile Include="Assets\Code\Ground.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

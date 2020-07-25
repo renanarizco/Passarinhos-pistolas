@@ -10,6 +10,8 @@ public class LevelController : MonoBehaviour
     //Variável _nextLevelIndex que basicamente age como a variável que troca o nível, ao acabar o nível ela some +1 fazendo com que vá ao próximo.
     private static int _nextLevelIndex = 1;
 
+    [SerializeField] int _maxLevel = 2;
+
 
 
     /*      MÉTODOS    */
@@ -41,5 +43,11 @@ public class LevelController : MonoBehaviour
 
         //Carrega a próxima fase.
         SceneManager.LoadScene(nextLevelName);
+
+        if(_nextLevelIndex > _maxLevel)
+        {
+            _nextLevelIndex = 1;
+            SceneManager.LoadScene("Level1");
+        }
     }
 }
