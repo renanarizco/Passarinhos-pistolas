@@ -49,7 +49,7 @@ public class LevelController : MonoBehaviour
         if(_nextLevelIndex > _maxLevel)
         {
             _nextLevelIndex = 1;
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Menu");
         }
     }
 }
