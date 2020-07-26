@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,6 +9,15 @@ public class Enemy : MonoBehaviour
 
 
     /*      MÉTODOS    */
+    //Roda quando o monstro morre.
+    private void MonsterDied()
+    {
+        GameObject.FindGameObjectWithTag("EnemyDying").GetComponent<AudioSource>().Play();
+        Instantiate(_CloudParticlePrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+        Debug.Log("Morreu um monstro");
+    }
+
     //Método que calcula quando o pássaro ou a caixa entra em contato com o monstro, fazendo ele sumir com uma nuvem.
     private void OnCollisionEnter2D(Collision2D collision) {
         Bird bird = collision.collider.GetComponent<Bird>();
@@ -19,23 +25,20 @@ public class Enemy : MonoBehaviour
 
         if (bird != null)
         {
-            Instantiate(_CloudParticlePrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            MonsterDied();
             return;
         }
 
         if (enemy != null)
         {
-            Instantiate(_CloudParticlePrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            MonsterDied();
             return;
         }
         
         //Se a caixa cair em cima da cabeça dele (y < -0.5), mata o monstro.
         if (collision.contacts[0].normal.y < -0.5)
         {
-            Instantiate(_CloudParticlePrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            MonsterDied();
         } 
     }
 }
