@@ -2,13 +2,19 @@
 
 public class Enemy : MonoBehaviour
 {
-    /*      VARIÁVEIS    */
+    /*      VARIÁVEIS       */
     //Variável privada _CloudParticlePrefab que guarda a nuvem que aparece quando um monstro é derrotado.
-    [SerializeField] private GameObject _CloudParticlePrefab;
+    [SerializeField] private GameObject _CloudParticlePrefab; 
 
 
+    /*      CONSTRUTORES        */
+    public Enemy(GameObject cloudParticlePrefab)
+    {
+        _CloudParticlePrefab = cloudParticlePrefab;
+    }
 
-    /*      MÉTODOS    */
+
+    /*      MÉTODOS     */
     //Roda quando o monstro morre.
     private void MonsterDied()
     {

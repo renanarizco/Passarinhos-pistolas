@@ -37,11 +37,11 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Code\Bird.cs" />
+     <Compile Include="Assets\Code\BackgroundMusic.cs" />
      <Compile Include="Assets\Code\MenuPrincipal.cs" />
      <Compile Include="Assets\Code\MenuOpções.cs" />
      <Compile Include="Assets\Code\Enemy.cs" />
      <Compile Include="Assets\Code\LevelController.cs" />
-     <Compile Include="Assets\Code\BackgroundMusic.cs" />
      <Compile Include="Assets\Code\MusicController.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

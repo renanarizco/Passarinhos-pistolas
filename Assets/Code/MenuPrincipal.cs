@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuPrincipal : MonoBehaviour
 {
     //Da stop na musica de fundo quando volta no menu inicial.
-    private void Awake() {
+    private void Start() {
         GameObject.FindGameObjectWithTag("Music").GetComponent<BackgroundMusic>().StopMusic();
     }
 
