@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
 
 
     /*      CONSTRUTORES        */
-    public Enemy(GameObject cloudParticlePrefab)
+    private Enemy(GameObject cloudParticlePrefab)
     {
         _CloudParticlePrefab = cloudParticlePrefab;
     }
@@ -25,9 +25,11 @@ public class Enemy : MonoBehaviour
     }
 
     //Método que calcula quando o pássaro ou a caixa entra em contato com o monstro, fazendo ele sumir com uma nuvem.
+    //Agora ele detecta colisão com o chão também.
     private void OnCollisionEnter2D(Collision2D collision) {
         Bird bird = collision.collider.GetComponent<Bird>();
         Enemy enemy = collision.collider.GetComponent<Enemy>();
+        Ground ground = collision.collider.GetComponent<Ground>();
 
         if (bird != null)
         {
@@ -41,8 +43,14 @@ public class Enemy : MonoBehaviour
             return;
         }
         
+        if (ground != null)
+        {
+            MonsterDied();
+            return;
+        }
+        
         //Se a caixa cair em cima da cabeça dele (y < -0.5), mata o monstro.
-        if (collision.contacts[0].normal.y < -0.5)
+        if (collision.GetContact(0).normal.y < -0.5)
         {
             MonsterDied();
         } 

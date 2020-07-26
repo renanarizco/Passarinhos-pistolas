@@ -12,7 +12,7 @@ public class LevelController : MonoBehaviour
     private static int _nextLevelIndex = 1;
 
     //Variável que controla o tanto de níveis que existem.
-    [SerializeField] int _maxLevel = 2;
+    [SerializeField] int _maxLevel = 3;
 
     //Variável que controla o nome do próximo nivel
     private string _nextLevelName;
@@ -24,7 +24,7 @@ public class LevelController : MonoBehaviour
     IEnumerator WaitFewSecondsToNextLevel()
     {
         //Espera uma quantidade de segundos pra ir pra próxima fase.
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
         //Mostra uma mensagem no debug falando que matou todos os inimigos.
         Debug.Log("You killed all enemies");

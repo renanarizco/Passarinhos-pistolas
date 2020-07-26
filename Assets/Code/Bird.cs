@@ -15,7 +15,7 @@ public class Bird : MonoBehaviour
     private float _timeSittingAround;
 
     //Variável _launchPower que faz com que a potência do vôo do pássaro aumente.
-    [SerializeField] private float _launchPower = 50;
+    [SerializeField] private float _launchPower = 10;
 
 
 
@@ -33,7 +33,7 @@ public class Bird : MonoBehaviour
         GetComponent<LineRenderer>().SetPosition(0, transform.position);
         GetComponent<LineRenderer>().SetPosition(1, _initialPosition);
 
-        if (_birdWasLaunched && GetComponent<Rigidbody2D>().velocity.magnitude <= 0.1)
+        if (_birdWasLaunched && GetComponent<Rigidbody2D>().velocity.magnitude <= 0.5)
         {
             _timeSittingAround = _timeSittingAround + Time.deltaTime;
         }
