@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
 {
+
+    //Serve para que a musica de fundo não suma quando a fase troca.
      private AudioSource _audioSource;
      private void Awake()
      {
