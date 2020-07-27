@@ -29,6 +29,7 @@ public class PlayingController : MonoBehaviour
 
     public void Quit()
     {
+        GameObject.FindGameObjectWithTag("Music").GetComponent<BackgroundMusic>().StopMusic();
         SceneManager.LoadScene("Menu");
     }
 }
