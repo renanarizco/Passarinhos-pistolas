@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
         {
             MonsterDied();
             return;
+
         }
         
         if (ground != null)

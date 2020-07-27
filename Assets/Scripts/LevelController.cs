@@ -17,16 +17,18 @@ public class LevelController : MonoBehaviour
     //Variável que controla o nome do próximo nivel
     private string _nextLevelName;
 
+    //Variável que controla o tempo de espera
+    private float _timeToNextLevel = 2.5F;
 
     /*      MÉTODOS    */
     //Serve para chamar a função de esperar uma quantidade de segundos pro som da explosão não acabar tão rápido.
     IEnumerator WaitFewSecondsToNextLevel()
     {
         //Espera uma quantidade de segundos pra ir pra próxima fase.
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(_timeToNextLevel);
 
         //Mostra uma mensagem no debug falando que matou todos os inimigos.
-        Debug.Log("You killed all enemies");
+        Debug.Log("Todos os monstros morreram");
 
         //A variável que controla o nível aumenta +1
         _nextLevelIndex++;
@@ -38,17 +40,25 @@ public class LevelController : MonoBehaviour
         if(_nextLevelIndex > _maxLevel)
         {
             _nextLevelIndex = 1;
+
+            //Da stop na musica de fundo quando volta no menu inicial.
+            GameObject.FindGameObjectWithTag("Music").GetComponent<BackgroundMusic>().StopMusic();
             SceneManager.LoadScene("Menu");
         }
-
-        //Carrega a próxima fase.
-        SceneManager.LoadScene(_nextLevelName);
+        //Senão, ele carrega a próxima fase normalmente.
+        else
+        {
+            //Carrega a próxima fase.
+            SceneManager.LoadScene(_nextLevelName);
+        }
     }
 
 
     //Ao Level ser carregado, faz com que a variável _enemies receba todos os monstros da fase.
+    //A variável global IsAllMonsterDead recebe falso
     private void OnEnable()
     {
+        Globals.IsAllMonsterDead = false;
         _enemies = FindObjectsOfType<Enemy>();
     }
 
@@ -63,6 +73,11 @@ public class LevelController : MonoBehaviour
             }
         }
 
-        StartCoroutine(WaitFewSecondsToNextLevel());
+        Globals.IsAllMonsterDead = true;
+        //Se todos os monstros estiverem mortos começa a rotina de troca de fase
+        if (Globals.IsAllMonsterDead)
+        {
+            StartCoroutine(WaitFewSecondsToNextLevel());
+        }
     }
 }

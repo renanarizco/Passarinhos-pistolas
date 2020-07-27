@@ -46,6 +46,7 @@
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\LevelController.cs" />
      <Compile Include="Assets\Scripts\MusicController.cs" />
+     <Compile Include="Assets\Scripts\Globals.cs" />
      <None Include="Assets\Sprites\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\Sprites\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\Sprites\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

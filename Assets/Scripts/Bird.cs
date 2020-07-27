@@ -1,4 +1,5 @@
-﻿using System.Net.Mime;
+﻿using System;
+using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +20,10 @@ public class Bird : MonoBehaviour
     private float _launchPower = 350;
 
     //Variável responsável pelo texto do tutorial.
-    private GameObject texttutorial;
+    private GameObject _textTutorial;
+
+    //Variáveis que controlam a posição dos limites do cenário
+    private int _mapPositiveX = 30, _mapNegativeX = -30, _mapPositiveY = 20, _mapNegativeY = -15;
 
 
 
@@ -27,39 +31,46 @@ public class Bird : MonoBehaviour
     //Faz com que ao iniciar o jogo a variável _initialPosition receba a posição definida pelo editor de level do unity.
     private void Awake()
     {
-        texttutorial = new GameObject();
+        _textTutorial = new GameObject();
         _initialPosition = transform.position;
     }
 
-    //Se o pássaro foi lançado e a velocidade dele for menor que 0.1, faz com que a variável _timeSittingAround aumente.
-    //Se o Update detectar que o pássaro saiu dos limites do mapa ou o tempo parado foi maior que o tanto definido ali, a cena reseta.
-    //Ao lançar o pássaro, o texto de tutorial é excluido.
+    private void ReloadScene()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
+
+    //Método que atualiza a cada frame
     private void Update()
     {
         GetComponent<LineRenderer>().SetPosition(0, transform.position);
         GetComponent<LineRenderer>().SetPosition(1, _initialPosition);
 
-        if (_birdWasLaunched && GetComponent<Rigidbody2D>().velocity.magnitude <= 0.5)
+        //Se o pássaro foi lançado e a velocidade dele for menor que 0.2, faz com que a variável _timeSittingAround aumente.
+        if (_birdWasLaunched && GetComponent<Rigidbody2D>().velocity.magnitude <= 0.2)
         {
             _timeSittingAround = _timeSittingAround + Time.deltaTime;
         }
 
+        //Se o pássaro foi lançado, o texto de tutorial é excluido.
         if (_birdWasLaunched)
         {
-            texttutorial = GameObject.FindGameObjectWithTag("TextTutorial");
-            Destroy(texttutorial);
+            _textTutorial = GameObject.FindGameObjectWithTag("TextTutorial");
+            Destroy(_textTutorial);
         }
 
-        if (
-            transform.position.y > 20 || transform.position.y < -15 ||
-            transform.position.x > 30 || transform.position.x < -30 ||
-            _timeSittingAround > 3
-            )
+        //Se o pássaro demorar muito tempo parado, reiniciar cena.
+        if (Globals.IsAllMonsterDead == false && _timeSittingAround > 3.3)
         {
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
+            ReloadScene();
         }
-        
+
+        //Se o pássaro sair do cenário, reiniciar a cena.
+        if (transform.position.y > _mapPositiveY || transform.position.y < _mapNegativeY ||transform.position.x > _mapPositiveX || transform.position.x < _mapNegativeX)
+        {
+            ReloadScene();
+        }
     }
 
     //Ao apertar o mouse  no pássaro, ele fica com a cor vermelha e aparece setas mostrando a direção que ele irá ser lançado.
