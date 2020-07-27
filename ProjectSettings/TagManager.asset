@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Music
   - EnemyDying
+  - TextTutorial
   layers:
   - Default
   - TransparentFX

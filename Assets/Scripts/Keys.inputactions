@@ -1,0 +1,52 @@
+{
+    "name": "RestartRound",
+    "maps": [
+        {
+            "name": "Fase",
+            "id": "07e82025-15cb-4fb7-8051-7f1d4b6c6add",
+            "actions": [
+                {
+                    "name": "Restart",
+                    "type": "PassThrough",
+                    "id": "ea3b24c0-1a76-454d-abe3-7e1db40b4dde",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "df50441b-348f-4df8-8b60-f349e8cd031a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ce4b9b1f-f062-43c2-be1d-f8b4aae25dcb",
+                    "path": "<Keyboard>/#(R)",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ac4a390-4c1f-4a65-9527-43aa153194c9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
