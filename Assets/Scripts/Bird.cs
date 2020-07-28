@@ -33,6 +33,7 @@ public class Bird : MonoBehaviour
     {
         _textTutorial = new GameObject();
         _initialPosition = transform.position;
+        Globals.CanControl = true;
     }
 
     private void ReloadScene()
@@ -75,10 +76,14 @@ public class Bird : MonoBehaviour
 
     //Ao apertar o mouse  no pássaro, ele fica com a cor vermelha e aparece setas mostrando a direção que ele irá ser lançado.
     private void OnMouseDown()
-    {
+    {   
         GetComponent<SpriteRenderer>().color = Color.red;
-        GetComponent<LineRenderer>().enabled = true;
-        
+
+        //Se a variável global CanControl estiver habilitada, a seta aparece.
+        if (Globals.CanControl)
+        {
+            GetComponent<LineRenderer>().enabled = true;
+        } 
     }
     
     //Ao soltar o mouse faz com que o pássaro volte a ser branco, depois a variável directionToInitialPosition recebe a posição inicial do pássaro - a posição nova.
@@ -87,16 +92,25 @@ public class Bird : MonoBehaviour
     private void OnMouseUp()
     {
         GetComponent<SpriteRenderer>().color = Color.white;
-        Vector2 directionToInitialPosition = _initialPosition - transform.position;
-        GetComponent<Rigidbody2D>().AddForce(directionToInitialPosition * _launchPower);
-        GetComponent<Rigidbody2D>().gravityScale = 1;
-        _birdWasLaunched = true;
-        GetComponent<LineRenderer>().enabled = false;
+
+        if(Globals.CanControl)
+        {
+            Vector2 DirectionToInitialPosition = _initialPosition - transform.position;
+            GetComponent<Rigidbody2D>().AddForce(DirectionToInitialPosition * _launchPower);
+            GetComponent<Rigidbody2D>().gravityScale = 1;
+            _birdWasLaunched = true;
+            Globals.CanControl = false;
+            GetComponent<LineRenderer>().enabled = false;
+        }
     }
 
     //Ao segurar o mouse faz com que o pássaro siga o cursor, transformando seu x e y no do cursor.
     private void OnMouseDrag() {
-        Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector3(newPosition.x, newPosition.y);
+        //Se a variável CanControl estiver habilitada, pode arrastar o pássaro.
+        if (Globals.CanControl)
+        {
+            Vector3 NewPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector3(NewPosition.x, NewPosition.y);
+        }
     }
 }
