@@ -39,14 +39,13 @@
      <Compile Include="Assets\Scripts\Ground.cs" />
      <Compile Include="Assets\Scripts\Bird.cs" />
      <Compile Include="Assets\Scripts\BackgroundMusic.cs" />
-     <Compile Include="Assets\Scripts\PlayingController.cs" />
      <Compile Include="Assets\Scripts\MenuPrincipal.cs" />
      <Compile Include="Assets\Scripts\KeysControls.cs" />
+     <Compile Include="Assets\Scripts\Globals.cs" />
      <Compile Include="Assets\Scripts\MenuOpções.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\LevelController.cs" />
      <Compile Include="Assets\Scripts\MusicController.cs" />
-     <Compile Include="Assets\Scripts\Globals.cs" />
      <None Include="Assets\Sprites\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\Sprites\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\Sprites\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

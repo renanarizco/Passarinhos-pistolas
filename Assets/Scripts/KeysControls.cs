@@ -20,7 +20,7 @@ public class @KeysControls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Restart"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""ea3b24c0-1a76-454d-abe3-7e1db40b4dde"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

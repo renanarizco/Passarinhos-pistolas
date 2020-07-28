@@ -36,11 +36,6 @@ public class Bird : MonoBehaviour
         Globals.CanControl = true;
     }
 
-    private void ReloadScene()
-    {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
-    }
 
     //Método que atualiza a cada frame
     private void Update()
@@ -64,13 +59,13 @@ public class Bird : MonoBehaviour
         //Se o pássaro demorar muito tempo parado, reiniciar cena.
         if (Globals.IsAllMonsterDead == false && _timeSittingAround > 3.3)
         {
-            ReloadScene();
+            Globals.Restart();
         }
 
         //Se o pássaro sair do cenário, reiniciar a cena.
         if (transform.position.y > _mapPositiveY || transform.position.y < _mapNegativeY ||transform.position.x > _mapPositiveX || transform.position.x < _mapNegativeX)
         {
-            ReloadScene();
+            Globals.Restart();
         }
     }
 

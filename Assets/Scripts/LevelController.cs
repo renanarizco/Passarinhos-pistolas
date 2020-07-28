@@ -20,6 +20,13 @@ public class LevelController : MonoBehaviour
     //Variável que controla o tempo de espera
     private float _timeToNextLevel = 2.5F;
 
+    //Variável responsável pelos controles do jogador.
+    private KeysControls _keysControls;
+
+    //Variável responsável pelo nome da fase atual.
+    private string _currentSceneName;
+
+
     /*      MÉTODOS    */
     //Serve para chamar a função de esperar uma quantidade de segundos pro som da explosão não acabar tão rápido.
     IEnumerator WaitFewSecondsToNextLevel()
@@ -36,16 +43,12 @@ public class LevelController : MonoBehaviour
         //Define o nome do próximo nivel baseado na variavel do indice de level.
         _nextLevelName = "Level" + _nextLevelIndex;
 
-        //Faz com que se o indice atual do nivel for maior que o máximo de níveis existentes, volta pra fase 1 e reseta o contador de níveis.
+        //Faz com que se o indice atual do nivel for maior que o máximo de níveis existentes, volta pro menu e reseta o contador de níveis.
         if(_nextLevelIndex > _maxLevel)
         {
             _nextLevelIndex = 1;
-
-            //Da stop na musica de fundo quando volta no menu inicial.
-            GameObject.FindGameObjectWithTag("Music").GetComponent<BackgroundMusic>().StopMusic();
-            SceneManager.LoadScene("Menu");
+            Globals.Quit();
         }
-        //Senão, ele carrega a próxima fase normalmente.
         else
         {
             //Carrega a próxima fase.
@@ -53,13 +56,37 @@ public class LevelController : MonoBehaviour
         }
     }
 
+    //Vem primeiro e ativa.
+    private void Awake()
+    {
+        //Instancia o novo _keysControls que é um objeto de KeysControls
+        _keysControls = new KeysControls();
+    }
 
-    //Ao Level ser carregado, faz com que a variável _enemies receba todos os monstros da fase.
-    //A variável global IsAllMonsterDead recebe falso
+    //Vem um pouco depois do Awake.
+    private void Start()
+    {
+        _keysControls.Fase.Exit.performed += _ => Globals.Quit();
+        _keysControls.Fase.Restart.performed += _ => Globals.Restart();
+    }
+
+    //Ao Level ser carregado, ativa. 
     private void OnEnable()
     {
+        //A variável global IsAllMonsterDead recebe falso.
         Globals.IsAllMonsterDead = false;
+
+        //Faz com que a variável _enemies receba todos os monstros da fase.
         _enemies = FindObjectsOfType<Enemy>();
+
+        //Habilita o _keysControls.
+        _keysControls.Enable();
+    }
+
+    //Ao level acabar desabilita as teclas.
+    private void OnDisable()
+    {
+        _keysControls.Disable();
     }
 
     //A todo segundo faz um foreach de todos os inimigos para verificar se todos morreram ou não.
