@@ -12,7 +12,7 @@ public class LevelController : MonoBehaviour
     private static int _nextLevelIndex = 1;
 
     //Variável que controla o tanto de níveis que existem.
-    [SerializeField] int _maxLevel = 4;
+    int _maxLevel = 4;
 
     //Variável que controla o nome do próximo nivel
     private string _nextLevelName;

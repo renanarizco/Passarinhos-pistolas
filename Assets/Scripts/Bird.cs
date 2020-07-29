@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,6 +25,11 @@ public class Bird : MonoBehaviour
 
     //Variáveis que controlam a posição dos limites do cenário
     private int _mapPositiveX = 30, _mapNegativeX = -30, _mapPositiveY = 20, _mapNegativeY = -15;
+
+    public Sprite BirdHit;
+
+    private float _timeToSpriteChange = 1.6f;
+
 
 
 
@@ -72,11 +78,10 @@ public class Bird : MonoBehaviour
     //Ao apertar o mouse  no pássaro, ele fica com a cor vermelha e aparece setas mostrando a direção que ele irá ser lançado.
     private void OnMouseDown()
     {   
-        GetComponent<SpriteRenderer>().color = Color.red;
-
         //Se a variável global CanControl estiver habilitada, a seta aparece.
         if (Globals.CanControl)
         {
+            GetComponent<SpriteRenderer>().color = Color.red;
             GetComponent<LineRenderer>().enabled = true;
         } 
     }
@@ -107,5 +112,22 @@ public class Bird : MonoBehaviour
             Vector3 NewPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(NewPosition.x, NewPosition.y);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GetComponent<SpriteRenderer>().sprite = BirdHit;
+        GetComponent<Animator>().enabled = false;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        StartCoroutine(WaitToSpriteChange());
+    }
+
+    IEnumerator WaitToSpriteChange()
+    {
+        yield return new WaitForSeconds(_timeToSpriteChange);
+        GetComponent<Animator>().enabled = true;
     }
 }
