@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Net.Mime;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Bird : MonoBehaviour
 {
@@ -26,8 +23,10 @@ public class Bird : MonoBehaviour
     //Variáveis que controlam a posição dos limites do cenário
     private int _mapPositiveX = 30, _mapNegativeX = -30, _mapPositiveY = 20, _mapNegativeY = -15;
 
+    //Variável que controla o nome do sprite de colisão do pássaro.
     public Sprite BirdHit;
 
+    //Variável que controla o tempo necessário pro sprite do pássaro trocar ao parar de colidir.
     private float _timeToSpriteChange = 1.6f;
 
 
@@ -114,17 +113,20 @@ public class Bird : MonoBehaviour
         }
     }
 
+    //Ao colidir com alguma coisa, troca o sprite do pássaro.
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GetComponent<SpriteRenderer>().sprite = BirdHit;
         GetComponent<Animator>().enabled = false;
     }
 
+    //Ao sair da colisão, começa a Co-rotina que faz esperar um tempinho até voltar ao sprite normal.
     private void OnCollisionExit2D(Collision2D collision)
     {
         StartCoroutine(WaitToSpriteChange());
     }
 
+    //Co-rotina responsável por voltar o pássaro ao normal.
     IEnumerator WaitToSpriteChange()
     {
         yield return new WaitForSeconds(_timeToSpriteChange);
