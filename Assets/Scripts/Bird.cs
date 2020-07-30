@@ -15,7 +15,7 @@ public class Bird : MonoBehaviour
     private float _timeSittingAround;
 
     //Variável _launchPower que faz com que a potência do vôo do pássaro aumente.
-    private float _launchPower = 360;
+    private float _launchPower = 370;
 
     //Variável responsável pelo texto do tutorial.
     private GameObject _textTutorial;
@@ -30,7 +30,7 @@ public class Bird : MonoBehaviour
     private float _timeToSpriteChange = 1.6f;
 
     //Distância máxima de drag
-    private float _maxDragDistance = 3f;
+    private float _maxDragDistance = 3.1f;
     
     //Objeto usado como referência pra calculo de física, basicamente é onde o pássaro nasce.
     public Rigidbody2D Hook;
@@ -85,6 +85,7 @@ public class Bird : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = Color.red;
             GetComponent<LineRenderer>().enabled = true;
+            GetComponent<TrailRenderer>().enabled = false;
         } 
     }
     
@@ -103,6 +104,7 @@ public class Bird : MonoBehaviour
             _birdWasLaunched = true;
             Globals.CanControl = false;
             GetComponent<LineRenderer>().enabled = false;
+            GetComponent<TrailRenderer>().enabled = true;
         }
     }
 
