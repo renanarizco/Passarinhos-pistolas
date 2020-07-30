@@ -29,8 +29,10 @@ public class Bird : MonoBehaviour
     //Variável que controla o tempo necessário pro sprite do pássaro trocar ao parar de colidir.
     private float _timeToSpriteChange = 1.6f;
 
+    //Distância máxima de drag
     private float _maxDragDistance = 3f;
     
+    //Objeto usado como referência pra calculo de física, basicamente é onde o pássaro nasce.
     public Rigidbody2D Hook;
 
 
@@ -109,8 +111,10 @@ public class Bird : MonoBehaviour
         //Se a variável CanControl estiver habilitada, pode arrastar o pássaro.
         if (Globals.CanControl)
         {
+            //Seta a variável de x e y MousePosition com a posição do mouse.
             Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+            //Se a posição arrastada do pássaro for maior do que a variável definida, o pássaro não vai mais pra trás.
             if (Vector3.Distance(MousePosition, Hook.position) > _maxDragDistance)
             {
                 GetComponent<Rigidbody2D>().position = Hook.position + (MousePosition - Hook.position).normalized * _maxDragDistance;
