@@ -15,7 +15,7 @@ public class Bird : MonoBehaviour
     private float _timeSittingAround;
 
     //Variável _launchPower que faz com que a potência do vôo do pássaro aumente.
-    private float _launchPower = 350;
+    private float _launchPower = 360;
 
     //Variável responsável pelo texto do tutorial.
     private GameObject _textTutorial;
@@ -29,7 +29,9 @@ public class Bird : MonoBehaviour
     //Variável que controla o tempo necessário pro sprite do pássaro trocar ao parar de colidir.
     private float _timeToSpriteChange = 1.6f;
 
-
+    private float _maxDragDistance = 3f;
+    
+    public Rigidbody2D Hook;
 
 
     /*      MÉTODOS    */
@@ -40,7 +42,6 @@ public class Bird : MonoBehaviour
         _initialPosition = transform.position;
         Globals.CanControl = true;
     }
-
 
     //Método que atualiza a cada frame
     private void Update()
@@ -108,8 +109,17 @@ public class Bird : MonoBehaviour
         //Se a variável CanControl estiver habilitada, pode arrastar o pássaro.
         if (Globals.CanControl)
         {
-            Vector3 NewPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(NewPosition.x, NewPosition.y);
+            Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (Vector3.Distance(MousePosition, Hook.position) > _maxDragDistance)
+            {
+                GetComponent<Rigidbody2D>().position = Hook.position + (MousePosition - Hook.position).normalized * _maxDragDistance;
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().position = MousePosition;
+            }
+            //transform.position = new Vector3(MousePosition.x, MousePosition.y);
         }
     }
 
