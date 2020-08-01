@@ -12,13 +12,13 @@ public class LevelController : MonoBehaviour
     private static int _nextLevelIndex = 1;
 
     //Variável que controla o tanto de níveis que existem.
-    int _maxLevel = 4;
+    int _maxLevel = 3;
 
     //Variável que controla o nome do próximo nivel
     private string _nextLevelName;
 
     //Variável que controla o tempo de espera
-    private float _timeToNextLevel = 2.5F;
+    private float _timeToNextLevel = 3.5F;
 
     //Variável responsável pelos controles do jogador.
     private KeysControls _keysControls;
