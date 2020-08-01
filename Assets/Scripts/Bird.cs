@@ -15,13 +15,13 @@ public class Bird : MonoBehaviour
     private float _timeSittingAround;
 
     //Variável _launchPower que faz com que a potência do vôo do pássaro aumente.
-    private float _launchPower = 370;
+    private float _launchPower = 375;
 
     //Variável responsável pelo texto do tutorial.
     private GameObject _textTutorial;
 
     //Variáveis que controlam a posição dos limites do cenário
-    private int _mapPositiveX = 30, _mapNegativeX = -30, _mapPositiveY = 20, _mapNegativeY = -15;
+    private int _mapPositiveX = 70, _mapNegativeX = -70, _mapPositiveY = 20, _mapNegativeY = -15;
 
     //Variável que controla o nome do sprite de colisão do pássaro.
     public Sprite BirdHit;
