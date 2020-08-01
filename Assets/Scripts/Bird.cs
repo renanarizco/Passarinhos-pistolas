@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Globalization;
+using System.Collections;
 using UnityEngine;
 
 public class Bird : MonoBehaviour
@@ -34,6 +35,9 @@ public class Bird : MonoBehaviour
     
     //Objeto usado como referência pra calculo de física, basicamente é onde o pássaro nasce.
     public Rigidbody2D Hook;
+
+    //String que controla o nome do som de colisão do pássaro.
+    private string _randomCollision;
 
 
     /*      MÉTODOS    */
@@ -86,6 +90,9 @@ public class Bird : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.red;
             GetComponent<LineRenderer>().enabled = true;
             GetComponent<TrailRenderer>().enabled = false;
+
+            //Toca o som de lock da glock.
+            GameObject.Find("GlockLock").GetComponent<AudioSource>().Play();
         } 
     }
     
@@ -105,11 +112,15 @@ public class Bird : MonoBehaviour
             Globals.CanControl = false;
             GetComponent<LineRenderer>().enabled = false;
             GetComponent<TrailRenderer>().enabled = true;
+
+            //Toca o som de tiro da glock.
+            GameObject.Find("GlockShot").GetComponent<AudioSource>().Play();
         }
     }
 
     //Ao segurar o mouse faz com que o pássaro siga o cursor, transformando seu x e y no do cursor.
-    private void OnMouseDrag() {
+    private void OnMouseDrag()
+    {
         //Se a variável CanControl estiver habilitada, pode arrastar o pássaro.
         if (Globals.CanControl)
         {
@@ -134,6 +145,12 @@ public class Bird : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = BirdHit;
         GetComponent<Animator>().enabled = false;
+
+        //Faz o som de colisão ser aleatório entre 1 e 3 (o ultimo numero - 1).
+        _randomCollision = "Collision" + Random.Range(1, 4);
+
+        //Toca o som de colisão.
+        GameObject.Find(_randomCollision).GetComponent<AudioSource>().Play();
     }
 
     //Ao sair da colisão, começa a Co-rotina que faz esperar um tempinho até voltar ao sprite normal.
