@@ -6,9 +6,6 @@ public class Enemy : MonoBehaviour
     //Variável privada _CloudParticlePrefab que guarda a nuvem que aparece quando um monstro é derrotado.
     [SerializeField] private GameObject _CloudParticlePrefab; 
 
-    //Variável que controla o nome da explosão.
-    private string _randomExplosion;
-
 
     /*      CONSTRUTORES        */
     private Enemy(GameObject cloudParticlePrefab)
@@ -21,15 +18,9 @@ public class Enemy : MonoBehaviour
     //Roda quando o monstro morre.
     private void MonsterDied()
     {
+        GameObject.FindGameObjectWithTag("EnemyDying").GetComponent<AudioSource>().Play();
         Instantiate(_CloudParticlePrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
-
-        //Faz a explosão ser aleatória.
-        _randomExplosion = "Explosion" + Random.Range(1, 4);
-
-        //Toca o som de explosão.
-        GameObject.Find(_randomExplosion).GetComponent<AudioSource>().Play();
-
         Debug.Log("Morreu um monstro");
     }
 
