@@ -69,7 +69,7 @@ public class Bird : MonoBehaviour
         }
 
         //Se o pássaro demorar muito tempo parado, reiniciar cena.
-        if (Globals.IsAllMonsterDead == false && _timeSittingAround > 3.3)
+        if (Globals.IsAllMonsterDead == false && _timeSittingAround > 10)
         {
             Globals.Restart();
         }
